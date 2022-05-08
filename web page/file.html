@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search</title>
+  </head>
+  <body style="background-color: rgb(255, 222, 251); text-align: center">
+    <h1 style="color: rgb(52, 1, 45);">Matrix Operations</h1>
+    <form action="Matrixreq" method="POST" id="Matrixreq">
+      <textarea
+        style="font-size: 20px"
+        rows="10"
+        cols="40"
+        name="description"
+        placeholder=" enter the matrix"
+        id="numofmatrix"
+        name="numofmatrix"
+        value="numofmatrix"
+      ></textarea
+      ><br />
+      <input
+        type="checkbox"
+        id="transpose"
+        name="transpose"
+        value="transpose"
+      />
+      <span style="font-size: 20px">transpose</span>
+      <input
+        type="checkbox"
+        id="determinant"
+        name="determinant"
+        value="determinant"
+      />
+      <span style="font-size: 20px">determinant</span>
+      <br />
+      <br />
+      <input type="submit" value="Submit" style="font-size: 18px" />
+    </form>
+  </body>
+</html>

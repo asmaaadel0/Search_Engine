@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="demo:war exploded">
+    <output-path>$PROJECT_DIR$/target/demo-1.0-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>demo</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="demo" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.mongodb:mongo-java-driver:3.12.10" />
+          <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.13.1" />
+          <element id="library" level="project" name="Maven: ca.rmen:porter-stemmer:1.0.0" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.2.2" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="demo/web/Web" />
+    </root>
+  </artifact>
+</component>

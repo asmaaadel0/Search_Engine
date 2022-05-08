@@ -1,0 +1,50 @@
+<style>
+    .speech {
+      border: 1px solid #ddd;
+      width: 300px;
+      padding: 0;
+      margin: 0;
+    }
+  
+    .speech input {
+      border: 0;
+      width: 240px;
+      display: inline-block;
+      height: 30px;
+      font-size: 14px;
+    }
+  
+    .speech img {
+      float: right;
+      width: 40px;
+    }
+  </style>
+  
+  <form id="labnol" method="get" action="http://www.labnol.org">
+    <div class="speech">
+      <input type="text" name="s" id="transcript" placeholder="Say Something" />
+      <img onclick="startDictation()" src="images/mic.jpg" />
+    </div>
+  </form>
+  
+  <script>
+    function startDictation() {
+      if (window.hasOwnProperty('webkitSpeechRecognition')) {
+        var recognition = new webkitSpeechRecognition();
+  
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+        recognition.start();
+  
+        recognition.onresult = function (e) {
+          document.getElementById('transcript').value = e.results[0][0].transcript;
+          recognition.stop();
+          document.getElementById('labnol').submit();
+        };
+        recognition.onerror = function (e) {
+          recognition.stop();
+        };
+      }
+    }
+  </script>
