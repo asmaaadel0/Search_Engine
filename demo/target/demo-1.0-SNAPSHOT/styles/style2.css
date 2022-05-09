@@ -1,11 +1,13 @@
 body {
     background-color: rgb(227, 227, 246);
 }
+
 h1 {
     color: rgb(28, 30, 158);
     font-size: 40px;
     font-family: "Didot";
 }
+
 header img {
     width: 80px;
     height: 5rem;
@@ -13,6 +15,7 @@ header img {
     object-fit: cover;
     margin-right: 20px;
 }
+
 ul {
     list-style: none;
     margin: 40px;
@@ -21,55 +24,65 @@ ul {
     text-decoration: none;
     display: flex;
 }
-#titles{
+
+#titles {
     color: rgb(3, 3, 169);
     font-size: 28px;
     margin-left: 100px;
 }
-#titles a{
+
+#titles a {
     text-decoration: none;
 }
+
 #titles a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
 }
-#links{
+
+#links {
     color: rgb(14, 169, 3);
     font-size: 23px;
     margin-left: 100px;
 }
-#snipped{
+
+#snipped {
     color: rgb(2, 3, 2);
     font-size: 20px;
     margin-left: 100px;
 }
-#no{
+
+#no {
     color: rgb(3, 3, 169);
     font-size: 30px;
     margin-left: 100px;
 }
 
-#butt{
+#butt {
     display: flex;
 }
+
 #butt button {
     margin-right: 20px;
     padding: 15px;
-    background:  rgb(227, 227, 246);
+    background: rgb(227, 227, 246);
     font-size: 20px;
     border-radius: 2px;
     border: none;
 }
+
 #butt button:hover {
-    background:  rgb(206, 206, 222);
+    background: rgb(206, 206, 222);
     font-size: 20px;
     border-radius: 2px;
     border: none;
 }
-p{
+
+p {
     margin-left: 50px;
     margin-right: 50px;
     padding-right: 50px;
 }
-main{
+
+main {
     margin-right: 50px;
-} 
+}

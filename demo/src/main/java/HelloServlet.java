@@ -13,6 +13,7 @@ import java.util.List;
 
 public class HelloServlet extends HttpServlet {
     String search;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -36,22 +37,20 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + seeds.get(0) + "</h1>");
         out.println("</body></html>");
-        for(int i=0; i< seeds.size();i++)
-        {
+        for (int i = 0; i < seeds.size(); i++) {
             String url = seeds.get(i);
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document htmlDocument = connection.get();
             String bodyText = htmlDocument.body().text();
             //return bodyText.toLowerCase().contains(searchWord.toLowerCase());
-            char []snippet =new char[50];
-            if (bodyText.toLowerCase().contains(search.toLowerCase()))
-            {
+            char[] snippet = new char[50];
+            if (bodyText.toLowerCase().contains(search.toLowerCase())) {
                 //set the result
-                String page_title=htmlDocument.title();
-                for (int j=0;j<50;j++)
+                String page_title = htmlDocument.title();
+                for (int j = 0; j < 50; j++)
                     snippet[j] = htmlDocument.body().text().charAt(j);
                 //print
-                System.out.println(htmlDocument.title()+", "+ Arrays.toString(snippet)+", "+seeds.get(i));
+                System.out.println(htmlDocument.title() + ", " + Arrays.toString(snippet) + ", " + seeds.get(i));
             }
         }
     }

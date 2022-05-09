@@ -12,22 +12,18 @@ import org.bson.Document;
 import database.mongoDB;
 import indexer.Indexer;
 
-public class Ranker_test
-
-{
+public class Ranker_test {
 
 
-    public static void main(String[] args) throws IOException
-    {
+    public static void main(String[] args) throws IOException {
         // Connect to the database
         mongoDB DB = new mongoDB("A");
-        Ranker webRanker = new  Ranker(DB);
+        Ranker webRanker = new Ranker(DB);
 
         webRanker.fill_matrix();
         webRanker.Rank();
 
     }
-
 
 
 }

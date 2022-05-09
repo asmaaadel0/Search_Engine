@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class page2 extends HttpServlet {
-    int start,finish;
+    int start, finish;
     int num_of_pages;
     List<String> title = new ArrayList<>();
     List<String> link = new ArrayList<>();
@@ -19,8 +19,9 @@ public class page2 extends HttpServlet {
     List<String> content = new ArrayList<>();
     String search;
     int end;
-    StringTokenizer strtoken ;
+    StringTokenizer strtoken;
     List<String> filetoken = new ArrayList<String>();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -61,21 +62,21 @@ public class page2 extends HttpServlet {
                 ////10 not 2
                 start = (j - 1) * 10;
                 ////10 not 2
-                finish=start+10;
-                if(finish>link.size())
-                    finish=link.size();
+                finish = start + 10;
+                if (finish > link.size())
+                    finish = link.size();
                 for (int i = start; i < finish; i++) {
                     out.println("<p id=\"titles\"><a href=\"");
                     out.println(link.get(i));
-                    out.println("/\">");
+                    out.println("\" target=\"_blank\">");
                     out.println(title.get(i));
                     out.println("</a></p>\n" +
                             "        <p id=\"links\">");
                     out.println(link.get(i));
                     out.println("</p>\n" +
                             "        <p id=\"snipped\">");
-                    int found=content.get(i).indexOf(search);
-                    if(found==-1) {
+                    int found = content.get(i).indexOf(search);
+                    if (found == -1) {
                         for (int o = 0; o < filetoken.size(); o++) {
                             if (content.get(i).indexOf(filetoken.get(o)) != -1) {
                                 found = content.get(i).indexOf(filetoken.get(o));
@@ -83,9 +84,8 @@ public class page2 extends HttpServlet {
                             }
                         }
                     }
-                    if(found==-1)
-                    {
-                        filetoken= queryprocessor.getwordsfound();
+                    if (found == -1) {
+                        filetoken = queryprocessor.getwordsfound();
                         for (int o = 0; o < filetoken.size(); o++) {
                             if (content.get(i).indexOf(filetoken.get(o)) != -1) {
                                 found = content.get(i).indexOf(filetoken.get(o));
@@ -93,8 +93,8 @@ public class page2 extends HttpServlet {
                             }
                         }
                     }
-                    if(found==-1)
-                        found=0;
+                    if (found == -1)
+                        found = 0;
                     end = found + 200;
                     if (end > content.get(i).length())
                         end = content.get(i).length();
@@ -115,8 +115,7 @@ public class page2 extends HttpServlet {
                         "\" style=\"text-decoration:underline; background:  rgb(227, 227, 246);\" >" +
                         i +
                         "</button></li>");
-            }
-            else {
+            } else {
                 out.println("<li ><button type=\"num_of_pages\" name=\"kb\" value=\"button" +
                         i +
                         "\">" +

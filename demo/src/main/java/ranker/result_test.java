@@ -4,8 +4,7 @@ import database.mongoDB;
 
 public class result_test {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 
 //		  mongoDB DB = new mongoDB("A");
 //		  Result result=new Result ( DB);
@@ -15,11 +14,6 @@ public class result_test {
 
 
     }
-
-
-
-
-
 
 
 }

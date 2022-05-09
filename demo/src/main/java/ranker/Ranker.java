@@ -10,35 +10,32 @@ import org.bson.Document;
 
 import database.mongoDB;
 
-public class Ranker
-
-{
+public class Ranker {
 
     static mongoDB db;
 
     HashMap<Integer, List<Integer>> ids_map;
 
     //constructor for the indexer
-    public Ranker(mongoDB DB)
-
-    {
+    public Ranker(mongoDB DB) {
         db = DB;
-        ids_map  = new HashMap<Integer, List<Integer>>();
+        ids_map = new HashMap<Integer, List<Integer>>();
 
     }
-    public static List<List<Integer>>  fill_matrix()  //List<List<Integer>>
+
+    public static List<List<Integer>> fill_matrix()  //List<List<Integer>>
     {
 
         Iterator<Document> CrawlerCollectionItr = db.getAllPages().iterator();
-        int dimensions=db.get_crawlled_pages_count();
+        int dimensions = db.get_crawlled_pages_count();
         dimensions++;//6
 
-        List<List<Integer>> matrix=new ArrayList<List<Integer>>(dimensions);
+        List<List<Integer>> matrix = new ArrayList<List<Integer>>(dimensions);
 
-        for(int e=0;e<dimensions;e++)//0 1 2 3 4 5
+        for (int e = 0; e < dimensions; e++)//0 1 2 3 4 5
         {
-            List<Integer> temp =new ArrayList<Integer>(dimensions);
-            for(int j=0;j<dimensions;j++)//6
+            List<Integer> temp = new ArrayList<Integer>(dimensions);
+            for (int j = 0; j < dimensions; j++)//6
             {
                 temp.add(null);
 
@@ -47,25 +44,24 @@ public class Ranker
 
         }
 
-        System.out.printf("size: %d \n",dimensions);
-        for(int l=0;l<dimensions;l++)
-            for(int m=0;m<dimensions;m++)
+        System.out.printf("size: %d \n", dimensions);
+        for (int l = 0; l < dimensions; l++)
+            for (int m = 0; m < dimensions; m++)
                 matrix.get(l).add(m, 0);
 
         int i = 1;
         while (CrawlerCollectionItr.hasNext()) {
             Document d = CrawlerCollectionItr.next();
 
-            Integer id=d.getInteger("id");
-            List<Integer> arr =  d.getList("childrednIDS",Integer.class);
-            System.out.printf("rank page: %d \n",id);
+            Integer id = d.getInteger("id");
+            List<Integer> arr = d.getList("childrednIDS", Integer.class);
+            System.out.printf("rank page: %d \n", id);
 
-            int size=arr.size();
+            int size = arr.size();
             Integer j;
 
-            for( j=0;j<size;j++)
-            {
-                System.out.printf("i'm child: %d \t",arr.get(j));
+            for (j = 0; j < size; j++) {
+                System.out.printf("i'm child: %d \t", arr.get(j));
 
                 matrix.get(id).add(arr.get(j), 1);
             }
@@ -78,19 +74,16 @@ public class Ranker
         return matrix;
 
 
-
     }
 
-    public static void   Rank()
-    {
+    public static void Rank() {
 
-        List<List<Integer>> adjacency_matrix=fill_matrix();
-        int dimensions=db.get_crawlled_pages_count();
+        List<List<Integer>> adjacency_matrix = fill_matrix();
+        int dimensions = db.get_crawlled_pages_count();
         dimensions++;
-        for(int l=0;l<dimensions;l++)
-        {
-            for(int m=0;m<dimensions;m++)
-                System.out.printf(adjacency_matrix.get(l).get(m)+" \t");
+        for (int l = 0; l < dimensions; l++) {
+            for (int m = 0; m < dimensions; m++)
+                System.out.printf(adjacency_matrix.get(l).get(m) + " \t");
             System.out.printf("\n");
         }
 
@@ -108,8 +101,8 @@ public class Ranker
         int InternalNodeNumber;
         int k = 1; // For Traversing
         int ITERATION_STEP = 1;
-        InitialPageRank = 1 /(double)(dimensions-1);
-        System.out.printf("\n page rank \n"+ InitialPageRank);
+        InitialPageRank = 1 / (double) (dimensions - 1);
+        System.out.printf("\n page rank \n" + InitialPageRank);
 
         // 0th ITERATION  _ OR _ INITIALIZATION PHASE //
 
@@ -119,7 +112,7 @@ public class Ranker
         }
 
         System.out.printf("\n Initial PageRank Values , 0th Step \n");
-        for (k = 1; k <dimensions; k++) {
+        for (k = 1; k < dimensions; k++) {
             System.out.printf(" Page Rank of " + k + " is :\t" + page_rank[k] + "\n");
         }
 
@@ -156,7 +149,7 @@ public class Ranker
             ITERATION_STEP = ITERATION_STEP + 1;
         }
         // Add the Damping Factor to PageRank
-        for (k = 1; k <dimensions; k++) {
+        for (k = 1; k < dimensions; k++) {
             page_rank[k] = (1 - DampingFactor) + DampingFactor * page_rank[k];
         }
 
@@ -165,29 +158,11 @@ public class Ranker
         for (k = 1; k < dimensions; k++) {
             System.out.printf(" Page Rank of " + k + " is :\t" + page_rank[k] + "\n");
 
-            db.get_url_rank(k,page_rank[k]);
+            db.get_url_rank(k, page_rank[k]);
         }
 
 
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -1,8 +1,10 @@
 package web;
+
 import ranker.Result;
 import ranker.queryprocessor;
 import database.mongoDB;
 import org.bson.Document;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -17,13 +19,14 @@ public class webpage extends HttpServlet {
     int counter = 0;
     int num_of_pages = 0;
     int end = 0;
-    StringTokenizer strtoken ;
+    StringTokenizer strtoken;
     List<String> filetoken = new ArrayList<String>();
     String con;
     List<String> title = new ArrayList<>(), link = new ArrayList<>(), content = new ArrayList<>(), snippet = new ArrayList<>();
     List<String> suggestions = new ArrayList<>();
     mongoDB DB = new mongoDB("A");
     queryprocessor process;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -31,7 +34,7 @@ public class webpage extends HttpServlet {
         PrintWriter out = response.getWriter();
         //process=new queryprocessor(search);
 
-        process=new queryprocessor(DB,search);
+        process = new queryprocessor(DB, search);
 
         out.println("<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
@@ -55,51 +58,47 @@ public class webpage extends HttpServlet {
                 "<body>\n" +
                 "    <main>");
         // Hello
-        List<String> allwords=new ArrayList<String>();
-        List<String> wordsfound=new ArrayList<String>();
+        List<String> allwords = new ArrayList<String>();
+        List<String> wordsfound = new ArrayList<String>();
         Iterator<Document> wordsCollectionItr = DB.getAllwords().iterator();
-        query=process.getquery();
+        query = process.getquery();
         System.out.println(query);
         while (wordsCollectionItr.hasNext()) {
             Document d = wordsCollectionItr.next();
             String word = d.getString("word");
             allwords.add(word);
         }
-        process.processes(query,allwords);
-        wordsfound=process.getwordsfound();
-        for (int i=0;i<wordsfound.size();i++)
+        process.processes(query, allwords);
+        wordsfound = process.getwordsfound();
+        for (int i = 0; i < wordsfound.size(); i++)
             System.out.println(wordsfound.get(i));
         //////////////////////
-        Result result=new Result (DB,process);
+        Result result = new Result(DB, process);
 
         result.fill_word_idf();
         result.fill_word_url_tf();
 
         result.fill_id_tf_idf();
-        for(Integer i : result.id_rank.keySet())
-        {
-            System.out.printf("id:%d , TF-IDF:%f \n ",i,result.id_rank.get(i));
+        for (Integer i : result.id_rank.keySet()) {
+            System.out.printf("id:%d , TF-IDF:%f \n ", i, result.id_rank.get(i));
         }
 
-        for(Integer i : result.id_count.keySet())
-        {
-            System.out.printf("id:%d , words_count:%d \n ",i,result.id_count.get(i));
+        for (Integer i : result.id_count.keySet()) {
+            System.out.printf("id:%d , words_count:%d \n ", i, result.id_count.get(i));
         }
 
         result.sort_id_rank();
-        for(Integer i : result.id_final.keySet())
-        {
-            System.out.printf("id:%d \n ",i);
+        for (Integer i : result.id_final.keySet()) {
+            System.out.printf("id:%d \n ", i);
         }
-        for (Integer i : result.id_final.keySet())
-        {
-            Document doc= DB.Crawlled.find(eq("id",i)).first();
+        for (Integer i : result.id_final.keySet()) {
+            Document doc = DB.Crawlled.find(eq("id", i)).first();
             title.add(doc.getString("title"));
             link.add(doc.getString("url"));
             content.add(doc.getString("content"));
 //            System.out.println(title.get(counter));
 //            System.out.println(link.get(counter));
-            if(counter==1)
+            if (counter == 1)
                 System.out.println(content.get(counter));
             counter++;
         }
@@ -114,12 +113,13 @@ public class webpage extends HttpServlet {
 //            }
 //        }
         strtoken = new StringTokenizer(search);
-        while(strtoken.hasMoreTokens()){
-            filetoken.add(strtoken.nextToken());}
+        while (strtoken.hasMoreTokens()) {
+            filetoken.add(strtoken.nextToken());
+        }
         for (Document d : DB.getAllsuggestions()) {
             suggestions.add(d.getString("suggestions"));
         }
-        if(!suggestions.contains(search))
+        if (!suggestions.contains(search))
             DB.insertsuggest(search);
         System.out.println(counter);
         if (counter == 0)
@@ -138,15 +138,15 @@ public class webpage extends HttpServlet {
             for (int i = 0; i < it; i++) {
                 out.println("<p id=\"titles\"><a href=\"");
                 out.println(link.get(i));
-                out.println("/\">");
+                out.println("\" target=\"_blank\">");
                 out.println(title.get(i));
                 out.println("</a></p>\n" +
                         "        <p id=\"links\">");
                 out.println(link.get(i));
                 out.println("</p>\n" +
                         "        <p id=\"snipped\">");
-                int found=content.get(i).indexOf(search);
-                if(found==-1) {
+                int found = content.get(i).indexOf(search);
+                if (found == -1) {
                     for (int o = 0; o < filetoken.size(); o++) {
                         if (content.get(i).indexOf(filetoken.get(o)) != -1) {
                             found = content.get(i).indexOf(filetoken.get(o));
@@ -154,9 +154,8 @@ public class webpage extends HttpServlet {
                         }
                     }
                 }
-                if(found==-1)
-                {
-                    filetoken=queryprocessor.getwordsfound();
+                if (found == -1) {
+                    filetoken = queryprocessor.getwordsfound();
                     for (int o = 0; o < filetoken.size(); o++) {
                         if (content.get(i).indexOf(filetoken.get(o)) != -1) {
                             found = content.get(i).indexOf(filetoken.get(o));
@@ -164,8 +163,8 @@ public class webpage extends HttpServlet {
                         }
                     }
                 }
-                if(found==-1)
-                    found=0;
+                if (found == -1)
+                    found = 0;
                 end = found + 300;
                 System.out.println(found);
                 if (end > content.get(i).length())
@@ -203,8 +202,8 @@ public class webpage extends HttpServlet {
         request.getSession().setAttribute("content", content);
         request.getSession().setAttribute("end", end);
         request.getSession().setAttribute("search", search);
-        request.getSession().setAttribute("filetoken",filetoken);
-        request.getSession().setAttribute("strtoken",strtoken);
+        request.getSession().setAttribute("filetoken", filetoken);
+        request.getSession().setAttribute("strtoken", strtoken);
         out.close();
     }
 }
