@@ -1,0 +1,18 @@
+Asmaa && Samaa:
+crawller
+
+Asmaa:
+interface
+query processor 
+voice searching 
+
+Samaa:
+phrase searching
+
+Norhan && Hoda:
+indexer
+ranker
+non phrase searching
+
+All team:
+reclawlling && reindexing

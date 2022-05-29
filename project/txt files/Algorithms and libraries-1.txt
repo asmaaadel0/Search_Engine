@@ -1,0 +1,15 @@
+Algorithms & Libraries:
+_______________________
+
+Crawler:
+Jsoup
+
+Ranker:
+- PageRank Algorithm.
+
+Indexer:
+- PorterStemmer Library.
+
+
+
+
