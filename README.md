@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # Search_Engine
 ## search engine implemented with Java.
 > ### Algorithms && Libraries:
@@ -22,3 +23,6 @@
 - Connect tomcat to intellij and run interface from intellij.
 - You must be connected with internet while crawlling.
 - Voice Recognition Search is an additional feature while searching.
+=======
+# APT_PRPJECT
+>>>>>>> Stashed changes
