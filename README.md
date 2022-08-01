@@ -44,7 +44,7 @@ $ git clone https://github.com/asmaaadel0/Search_Engine.git
 
 
 
-## 💻 Built Using <a name = "tech"></a>
+## Built Using <a name = "tech"></a>
 
 - **Java**
 
