@@ -7,7 +7,7 @@
   - [Running](#running)
 - [Technology](#tech)
 - [Algorithms && Libraries](#algo)
--[Notes](#note)
+- [Notes](#note)
 - [Screenshots](#Screenshots)
 - [Contributors](#Contributors)
 
