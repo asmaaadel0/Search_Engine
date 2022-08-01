@@ -8,7 +8,6 @@
 - [Technology](#tech)
 - [Algorithms && Libraries](#algo)
 - [Notes](#note)
-- [Screenshots](#Screenshots)
 - [Contributors](#Contributors)
 
 ## About <a name = "about"></a>
@@ -61,23 +60,6 @@ $ git clone https://github.com/asmaaadel0/Search_Engine.git
 - **Connect tomcat to intellij and run interface from intellij.**
 - **You must be connected with internet while crawlling.**
 - **Voice Recognition Search is an additional feature while searching.**
-
-<!-- ## 📷 Demo Screenshots <a name = "Screenshots"></a>
-
-<div align="center">
-<h3 align='left'>Main Screen</h3>
-   <img src="screenshots/screen1.png">
-<h3 align='left'>Suggestion Mechanism</h3>
-   <img  src="screenshots/screen2.png"></a>
-
-<h3 align='left'>Results</h3>
-<img src="screenshots/screen3.png"></a>
-<h3 align='left'>Pagination of results</h3>
-<img src="screenshots/screen4.png"></a>
-<h3 align='left'>Phrase Searching</h3>
-<img src="screenshots/screen5.png"></a>
-
-</div> -->
 
 ## Contributors <a name = "Contributors"></a>
 
