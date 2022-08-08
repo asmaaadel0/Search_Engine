@@ -79,7 +79,7 @@ $ git clone https://github.com/asmaaadel0/Search_Engine.git
 ![image](https://user-images.githubusercontent.com/88630231/177027836-0be5588d-cc49-4c0b-8326-f51d1209cc51.png)
 ![image](https://user-images.githubusercontent.com/88630231/177027854-3e5c6325-a192-4dd7-b0c4-572e34073723.png)
 
-**-------------voice Search-----------------**
+<!-- **-------------voice Search-----------------** -->
  <h3 align='left'>voice Search</h3>
 
 **Hey please say somthing** 
