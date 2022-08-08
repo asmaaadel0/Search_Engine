@@ -86,7 +86,7 @@ $ git clone https://github.com/asmaaadel0/Search_Engine.git
  - **Hey please say somthing** 
 ![image](https://user-images.githubusercontent.com/88630231/177027878-8dc02bef-64c8-49cf-af6a-5f7b16d32f3d.png)
 
- ## screen Shot from the game: <a name = "link"></a>
+ ## link to explanation video: <a name = "link"></a>
  - https://drive.google.com/file/d/1Ao9zn5flbwaEXWd3kbQusquN99SPcj__/view?usp=sharing
 
 ## Contributors <a name = "Contributors"></a>
