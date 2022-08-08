@@ -11,7 +11,7 @@
 - [Contributors](#Contributors)
 
 ## About <a name = "about"></a>
-- Search engine implemented with Java including:web crawling, indexing and ranking and the interaction between them.
+- Search engine implemented with Java including: web crawling, indexing and ranking and the interaction between them.
 
 ## Getting Started <a name = "get-started"></a>
 
