@@ -63,7 +63,7 @@ $ git clone https://github.com/asmaaadel0/Search_Engine.git
 - **You must be connected with internet while crawlling.**
 - **Voice Recognition Search is an additional feature while searching.**
 
- ## ScreenShots : <a name = "screan-shots"></a>
+ ## ScreenShots : <a name = "screen-shots"></a>
 <!-- **Normal Search** -->
  <h3 align='left'>Normal Search</h3>
 
